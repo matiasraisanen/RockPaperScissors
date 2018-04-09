@@ -1,7 +1,7 @@
 # RockPaperScissors
-A simple rock paper scissors -game.
+A simple rock paper scissors -game made with Python.
 
-Saves scores in a local high score list.
+Saves scores in a local high score list, which it creates in the same folder.
 
 ## RUN
 Run with Python3.
