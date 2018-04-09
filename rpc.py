@@ -32,6 +32,7 @@ class Game:
 
 
     def hiScoreExists(self):
+        """Check if the high score file exists, and create one if there is no file."""
         emptylist = []
         try:
             hiscore = open("hiscore_ksp.txt", 'rb')
@@ -42,6 +43,7 @@ class Game:
             hiscore.close()
 
     def saveHiScore(self):
+        """Save the current score. High Score list contains 10 best scores. If list is longer, the lowest score is discarded"""
         high_scores = []
         self.hiScoreExists()
 
@@ -57,6 +59,7 @@ class Game:
             pickle.dump(high_scores, hiscore)
 
     def readHiScore(self):
+        """Displays the current high scores"""
         high_scores = []
         self.hiScoreExists()
         print("######################.HIGH.SCORES.######################")
