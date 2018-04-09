@@ -26,7 +26,7 @@ class Game:
         self.name = input("What is your name? ")
 
     def score(self):
-        #100pts for win, 10pts for tie. -100pts for loss. Then multiply by win rate + 1
+        """Highly sophisticated scoring algorithm. 100pts for win, 10pts for tie, -100pts for loss. Then multiply by win rate + 1"""
         score = int(((self.wins*100  + self.ties*10) - self.losses*100) * ((self.wins/self.rounds)+1))
         return score
 
@@ -35,27 +35,27 @@ class Game:
         """Check if the high score file exists, and create one if there is no file."""
         emptylist = []
         try:
-            hiscore = open("hiscore_ksp.txt", 'rb')
+            hiscore = open("hiscore_rps.txt", 'rb')
             hiscore.close()
         except IOError:
-            hiscore = open("hiscore_ksp.txt", 'wb')
+            hiscore = open("hiscore_rps.txt", 'wb')
             pickle.dump(emptylist, hiscore)
             hiscore.close()
 
     def saveHiScore(self):
-        """Save the current score. High Score list contains 10 best scores. If list is longer, the lowest score is discarded"""
+        """Save the current score as a tuple. High Score list contains 10 best scores. If list is longer, the lowest score is discarded"""
         high_scores = []
         self.hiScoreExists()
 
-        with open('hiscore_ksp.txt', 'rb') as f:
-            high_scores = pickle.load(f)
+        with open('hiscore_rps.txt', 'rb') as hs:
+            high_scores = pickle.load(hs)
         score = self.score()
 
         high_scores.append((self.name, self.rounds, self.wins, self.losses, self.ties, score))
 
         high_scores = sorted(high_scores, key=itemgetter(5),reverse=True)[:10]
 
-        with  open("hiscore_ksp.txt","wb") as hiscore:
+        with  open("hiscore_rps.txt","wb") as hiscore:
             pickle.dump(high_scores, hiscore)
 
     def readHiScore(self):
@@ -64,8 +64,8 @@ class Game:
         self.hiScoreExists()
         print("######################.HIGH.SCORES.######################")
         rowNum = 1
-        with open('hiscore_ksp.txt', 'rb') as f:
-            high_scores = pickle.load(f)
+        with open('hiscore_rps.txt', 'rb') as hs:
+            high_scores = pickle.load(hs)
 
         for i in high_scores:
             name, rounds, wins, losses, ties, score = i
