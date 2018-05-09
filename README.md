@@ -1,5 +1,5 @@
 # RockPaperScissors
-A simple rock paper scissors -game made with Python.
+A simple rock paper scissors -game written in Python.
 
 Saves scores in a local high score list, which it creates in the same folder.
 
